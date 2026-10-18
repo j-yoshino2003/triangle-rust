@@ -5,7 +5,7 @@
 
 | エージェント | このファイルの読み込み方 | ハーネスの置き場 |
 |------|------|------|
-| Claude Code | `CLAUDE.local.md` の `@AGENTS.md` で参照 | `.claude/`（rules / skills / vendor プラグイン） |
+| Claude Code | `CLAUDE.md` の `@AGENTS.md` で参照 | `.claude/`（rules / skills / vendor プラグイン） |
 | OpenAI Codex CLI | リポジトリルートの `AGENTS.md` を自動読み込み（`.codex/config.toml` の `project_doc_max_bytes` 内） | `.codex/`（rules の複製 / skills / agents / hooks） |
 | Google Antigravity CLI | 作業ディレクトリの `AGENTS.md` を読み込み | `.agent/`（rules の複製 / skills / agents / plugins） |
 
@@ -55,7 +55,7 @@
 
 - 優先順位は **エンジン別 > 言語別 > 共通**
 - 規約を変更するときは `.claude/rules/` の正本を先に直し、`.codex/rules/`・`.agent/rules/` の複製と
-  `docs/ja-JP/rules/` の日本語訳を追随させる（同期の確認コマンドはリポジトリの `CLAUDE.md` を参照）
+  `docs/ja-JP/rules/` の日本語訳を追随させる（4 箇所すべてを 1 回の変更で揃える）
 
 ## 作業範囲ルール【最重要】
 
@@ -83,11 +83,16 @@ rust
 > - `.codex/scripts/edit-scope-guard.sh`
 > - `.agent/.agents/plugins/coding-harness/scripts/edit-scope-guard.sh`
 
-> NOTE: `CLAUDE.md` が一覧に在るのは、**`/speckit.plan` の手順 3 が `.specify/scripts/bash/update-agent-context.sh`
-> 経由でルートの `CLAUDE.md` を作る**ためです（無ければ `.specify/templates/agent-file-template.md` から新規作成）.
-> このハーネスの入口は `CLAUDE.local.md` → `@AGENTS.md` なので、できた `CLAUDE.md` は**作業ルールの正本ではありません**.
-> Claude Code は両方を自動読み込みするため、`CLAUDE.md` には spec-kit が入れる技術スタックの要約だけを置き、
-> 作業ルールは `AGENTS.md` 側に集約したままにします. `/speckit.plan` に手順 3 を実行させたくない場合はそう指示します.
+> NOTE: このハーネスの入口は `CLAUDE.md` → `@AGENTS.md` です。`CLAUDE.md` 自体は Git 管理下に在り、
+> **作業ルールの正本ではありません**（正本はこの `AGENTS.md`）.
+>
+> `/speckit.plan` の手順 3 が `.specify/scripts/bash/update-agent-context.sh` 経由で同じ `CLAUDE.md` に
+> `## Active Technologies` と `## Recent Changes` を追記します（既存の行は読み直して書き戻されるため
+> `@AGENTS.md` は保持される）. `CLAUDE.md` には spec-kit が入れる技術スタックの要約だけを置き、
+> 作業ルールは `AGENTS.md` 側に集約したままにします. 手順 3 を実行させたくない場合はそう指示します.
+>
+> `CLAUDE.local.md` が一覧に在るのは、個人のマシンでしか使わない設定を置くためです（`.gitignore` で
+> 追跡対象から外してある）. Claude Code は両方を自動読み込みします.
 
 1. **編集はこの範囲限定**: 上記のディレクトリ・ファイル以外は編集しない
 2. **範囲外が必要なときは停止**: 範囲外のファイル変更が必要になった場合は、作業を進めず必ずユーザーに確認する

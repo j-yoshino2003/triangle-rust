@@ -67,12 +67,14 @@ cargo run
 
 ## 状態
 
-環境構築まで完了。`Cargo.toml` / `rustfmt.toml` / `src/main.rs` を置き、依存クレート
+環境構築まで完了。`Cargo.toml` / `Cargo.lock` / `rustfmt.toml` を置き、依存クレート
 （`vulkano` 0.35.2 / `vulkano-shaders` 0.35.0 / `winit` 0.30.13）を入れた状態で
 `cargo build` / `cargo run` / `cargo fmt --check` / `cargo clippy` が通ることを確認した。
 
-`src/main.rs` は `Hello, world!` を出すだけで、Vulkan の実装はまだ入っていない。
-上の「実装の段取り」の 1 番から順に積んでいくのが次の一歩。
+Rust のソース（`src/`）は Git 管理下に入れていない。Vulkan の実装を入れる段階で、上の
+「実装の段取り」を 1 番から積んだものをまとめて追加する。そのためクローンした直後は
+`src/main.rs` が無く `cargo build` が通らない — 動かすだけなら `fn main() {}` だけの
+`src/main.rs` を置けばよい。
 
 ## 参考
 

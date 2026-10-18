@@ -16,6 +16,9 @@ target
 # rustc will dump stack traces when hitting an internal compiler error to PWD
 rustc-ice-*.txt
 
+# 個人のマシンでしか使わない Claude Code の設定. 共有する作業ルールは AGENTS.md と CLAUDE.md
+CLAUDE.local.md
+
 # RustRover
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore

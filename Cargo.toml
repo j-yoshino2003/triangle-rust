@@ -1,0 +1,14 @@
+[package]
+name = "triangle"
+version = "0.1.0"
+edition = "2024"
+# 学習用のため crates.io へは公開しない.
+publish = false
+
+[dependencies]
+# Vulkan の安全なラッパー.
+vulkano = "0.35"
+# GLSL をビルド時に SPIR-V へコンパイルするマクロ.
+vulkano-shaders = "0.35"
+# ウィンドウ作成とイベントループ. 0.31 系は beta のため安定版の 0.30 系を使う.
+winit = "0.30"
